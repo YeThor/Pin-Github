@@ -1,0 +1,23 @@
+{
+  "name": "pin-github",
+  "version": "1.0.0",
+  "description": "A Chrome extension which pins the additional options when creating PR or Issue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "./node_modules/typescript/bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YeThor/Pin-Github.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YeThor/Pin-Github/issues"
+  },
+  "homepage": "https://github.com/YeThor/Pin-Github#readme",
+  "dependencies": {
+    "typescript": "^3.5.2"
+  }
+}
