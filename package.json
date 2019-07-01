@@ -4,7 +4,8 @@
   "description": "A Chrome extension which pins the additional options when creating PR or Issue",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "./node_modules/typescript/bin/tsc"
   },
   "repository": {
     "type": "git",
