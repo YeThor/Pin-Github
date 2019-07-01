@@ -2,5 +2,8 @@
   "name": "Pin Github",
   "desciprtion": "Pin subfields for your PR & Issues",
   "version": "1.0",
-  "manifest_version": 2
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "dist/index.html"
+  }
 }
