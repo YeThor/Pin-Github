@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://github.com/*/issues/new"],
-      "js": ["contentScript.ts"],
+      "js": ["src/contentScript.ts"],
       "run_at": "document_idle"
     }
   ]
