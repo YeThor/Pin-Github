@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/YeThor/Pin-Github#readme",
   "dependencies": {
+    "rxjs": "^6.5.2",
     "typescript": "^3.5.2"
   }
 }

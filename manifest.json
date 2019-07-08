@@ -4,12 +4,12 @@
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
-    "default_popup": "dist/index.html"
+    "default_popup": "src/index.html"
   },
   "content_scripts": [
     {
       "matches": ["https://github.com/*/issues/new"],
-      "js": ["contentScript.ts"],
+      "js": ["dist/contentScript.js"],
       "run_at": "document_idle"
     }
   ]
