@@ -3,10 +3,13 @@ const path = require("path");
 module.exports = {
   mode: "development",
   devtool: "inline-source-map",
-  entry: "./src/index.ts",
+  entry: {
+    index: "./src/index.ts",
+    contentScript: "./src/contentScript.ts"
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     publicPath: "/"
   },
   resolve: {
@@ -17,7 +20,7 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: "ts-loader",
-        exclude: /node_modules/
+        exclude: [/node_modules/]
       }
     ]
   }
