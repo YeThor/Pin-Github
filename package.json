@@ -4,6 +4,7 @@
   "description": "A Chrome extension which pins the additional options when creating PR or Issue",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "./node_modules/typescript/bin/tsc"
   },
@@ -19,6 +20,11 @@
   "homepage": "https://github.com/YeThor/Pin-Github#readme",
   "dependencies": {
     "rxjs": "^6.5.2",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
+  },
+  "devDependencies": {
+    "ts-loader": "^6.0.4"
   }
 }
