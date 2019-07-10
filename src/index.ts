@@ -5,6 +5,7 @@ const initializeApp = (): App => new App();
 
 class App {
   private _onTokenBtnClick$: Observable<Event>;
+  private _token: string = "";
 
   constructor() {
     this._onTokenBtnClick$ = fromEvent(
@@ -28,7 +29,18 @@ class App {
       .value;
 
     chrome.storage.sync.set({ token }, () => {
-      console.log(`just saved ${token}`);
+      const tokenInputBtn = document.querySelector(
+        "#token-input"
+      ) as HTMLInputElement;
+      const tokenSaveBtn = document.querySelector(
+        "#token-btn"
+      ) as HTMLButtonElement;
+
+      tokenInputBtn.type = "password";
+      tokenInputBtn.disabled = true;
+      tokenInputBtn.style.border = "none";
+
+      tokenSaveBtn.innerText = "Edit";
     });
   }
 }
