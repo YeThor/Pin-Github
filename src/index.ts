@@ -4,7 +4,7 @@ import { take } from "rxjs/operators";
 const initializeApp = (): void => {
   const tokenInput = document.querySelector("#token-input");
   const onTokenSaveBtn$ = fromEvent(
-    document.querySelector("#token-save") as HTMLButtonElement,
+    document.querySelector("#token-btn") as HTMLButtonElement,
     "click"
   );
 
