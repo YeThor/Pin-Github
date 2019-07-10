@@ -9,8 +9,9 @@
   "content_scripts": [
     {
       "matches": ["https://github.com/*/issues/new"],
-      "js": ["dist/contentScript.js"],
+      "js": ["dist/contentScript.bundle.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "permissions": ["storage"]
 }
