@@ -4,7 +4,6 @@ const initializeApp = (): App => new App();
 
 class App {
   private _onTokenBtnClick$: Observable<Event>;
-  private _token: string = "";
 
   constructor() {
     this._onTokenBtnClick$ = fromEvent(
@@ -17,7 +16,20 @@ class App {
 
   private _init(): void {
     this._watchObservables();
-    this._getToken();
+    this._getToken().then(
+      (token: string): void => {
+        const tokenInput = document.querySelector(
+          "#token-input"
+        ) as HTMLInputElement;
+
+        if (token) {
+          tokenInput.value = token;
+          this._disableInput();
+        } else {
+          this._enableInput();
+        }
+      }
+    );
   }
 
   private _watchObservables(): void {
@@ -40,17 +52,14 @@ class App {
 
     chrome.storage.sync.set({ token }, () => {
       this._disableInput();
-      this._getToken();
     });
   }
 
-  private _getToken(): void {
-    chrome.storage.sync.get("token", result => {
-      this._token = result.token || "";
-
-      (document.querySelector(
-        "#token-input"
-      ) as HTMLInputElement).value = this._token;
+  private _getToken(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.get("token", result => {
+        resolve(result.token);
+      });
     });
   }
 
