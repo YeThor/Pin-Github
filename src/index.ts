@@ -18,6 +18,7 @@ class App {
 
   private _init(): void {
     this._watchObservables();
+    this._getToken();
   }
 
   private _watchObservables(): void {
@@ -41,6 +42,13 @@ class App {
       tokenInputBtn.style.border = "none";
 
       tokenSaveBtn.innerText = "Edit";
+    });
+  }
+
+  private _getToken(): void {
+    chrome.storage.sync.get("token", result => {
+      console.log(result);
+      this._token = result.token || "";
     });
   }
 }
