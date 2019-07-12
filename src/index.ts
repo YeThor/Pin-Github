@@ -1,4 +1,5 @@
 import { fromEvent, Observable } from "rxjs";
+import { getToken } from "./util";
 
 const initializeApp = (): App => new App();
 
@@ -16,7 +17,7 @@ class App {
 
   private _init(): void {
     this._watchObservables();
-    this._getToken().then(
+    getToken().then(
       (token: string): void => {
         const tokenInput = document.querySelector(
           "#token-input"
@@ -52,14 +53,6 @@ class App {
 
     chrome.storage.sync.set({ token }, () => {
       this._disableInput();
-    });
-  }
-
-  private _getToken(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      chrome.storage.sync.get("token", result => {
-        resolve(result.token);
-      });
     });
   }
 
