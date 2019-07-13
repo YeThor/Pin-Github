@@ -1,4 +1,5 @@
 import getToken from "./util/getToken";
+import { fromEvent } from "rxjs";
 
 console.log("content-script");
 
@@ -18,6 +19,10 @@ console.log("content-script");
   });
 
   newIssueBtn.parentNode!.insertBefore(customIssueBtn, newIssueBtn.nextSibling);
+
+  fromEvent(customIssueBtn, "click").subscribe(() => {
+    console.log("click");
+  });
 
   // getToken().then(
   //   (token: string): void => {
