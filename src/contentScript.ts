@@ -1,14 +1,18 @@
 import getToken from "./util/getToken";
 import { fromEvent } from "rxjs";
 
-console.log("content-script");
-
 (function() {
   const newIssueBtn = getNewIssueBtn();
 
   if (!newIssueBtn) {
     return;
   }
+
+  if (document.querySelector(".custom-btn")) {
+    return;
+  }
+
+  console.log("content-script");
 
   const customIssueBtn = document.createElement("a");
 
@@ -17,6 +21,8 @@ console.log("content-script");
   [...newIssueBtn.classList].forEach(className => {
     customIssueBtn.classList.add(className);
   });
+
+  customIssueBtn.classList.add("custom-btn");
 
   newIssueBtn.parentNode!.insertBefore(customIssueBtn, newIssueBtn.nextSibling);
 
