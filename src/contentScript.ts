@@ -1,4 +1,4 @@
-import { getToken } from "./util";
+import getToken from "./util/getToken";
 
 console.log("content-script");
 
