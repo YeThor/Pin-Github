@@ -16,5 +16,10 @@
     "scripts": ["dist/backgroundScript.bundle.js"],
     "persistent": false
   },
-  "permissions": ["storage", "webNavigation", "tabs"]
+  "permissions": [
+    "storage",
+    "webNavigation",
+    "tabs",
+    "https://github.com/*/issues"
+  ]
 }
