@@ -6,7 +6,8 @@ module.exports = {
   watch: true,
   entry: {
     index: "./src/index.ts",
-    contentScript: "./src/contentScript.ts"
+    contentScript: "./src/contentScript.ts",
+    backgroundScript: "./src/backgroundScript.ts"
   },
   output: {
     path: path.resolve(__dirname, "dist"),

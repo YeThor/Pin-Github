@@ -9,9 +9,12 @@
   "content_scripts": [
     {
       "matches": ["https://github.com/*/issues"],
-      "js": ["dist/contentScript.bundle.js"],
-      "run_at": "document_idle"
+      "js": ["dist/contentScript.bundle.js"]
     }
   ],
-  "permissions": ["storage"]
+  "background": {
+    "scripts": ["dist/backgroundScript.bundle.js"],
+    "persistent": false
+  },
+  "permissions": ["storage", "webNavigation", "tabs"]
 }
