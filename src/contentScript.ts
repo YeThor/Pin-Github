@@ -28,22 +28,27 @@ import { fromEvent } from "rxjs";
 
   fromEvent(customIssueBtn, "click").subscribe(() => {
     console.log("click");
-  });
 
-  // getToken().then(
-  //   (token: string): void => {
-  //     fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
-  //       method: "POST",
-  //       headers: new Headers({
-  //         Authorization: `token ${token}`
-  //       }),
-  //       body: JSON.stringify({
-  //         title: "Test Title",
-  //         body: "Test Body"
-  //       })
-  //     }).then(res => console.log(res));
-  //   }
-  // );
+    getToken().then(
+      (token: string): void => {
+        fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
+          method: "POST",
+          headers: new Headers({
+            Authorization: `token ${token}`,
+            "Content-Type": "application/vnd.github.symmetra-preview+json"
+          }),
+          body: JSON.stringify({
+            title: "Test Title",
+            body: "Test Body"
+          })
+        }).then(res => {
+          res.json().then(res => {
+            window.location.href = res.html_url;
+          });
+        });
+      }
+    );
+  });
 })();
 
 function getNewIssueBtn(): HTMLElement | null {
