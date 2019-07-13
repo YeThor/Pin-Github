@@ -9,21 +9,30 @@ console.log("content-script");
     return;
   }
 
-  console.log(newIssueBtn);
-  getToken().then(
-    (token: string): void => {
-      fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
-        method: "POST",
-        headers: new Headers({
-          Authorization: `token ${token}`
-        }),
-        body: JSON.stringify({
-          title: "Test Title",
-          body: "Test Body"
-        })
-      }).then(res => console.log(res));
-    }
-  );
+  const customIssueBtn = document.createElement("a");
+
+  customIssueBtn.innerText = "Custom issue";
+
+  [...newIssueBtn.classList].forEach(className => {
+    customIssueBtn.classList.add(className);
+  });
+
+  newIssueBtn.parentNode!.insertBefore(customIssueBtn, newIssueBtn.nextSibling);
+
+  // getToken().then(
+  //   (token: string): void => {
+  //     fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
+  //       method: "POST",
+  //       headers: new Headers({
+  //         Authorization: `token ${token}`
+  //       }),
+  //       body: JSON.stringify({
+  //         title: "Test Title",
+  //         body: "Test Body"
+  //       })
+  //     }).then(res => console.log(res));
+  //   }
+  // );
 })();
 
 function getNewIssueBtn(): HTMLElement | null {
