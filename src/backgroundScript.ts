@@ -1,4 +1,10 @@
-console.log("background");
-chrome.webNavigation.onHistoryStateUpdated.addListener(function() {
-  console.log("history state updated");
+chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
+  const isIssueBoard = /https:\/\/github.com\/.*\/(issues)$/.test(details.url);
+
+  if (isIssueBoard) {
+    console.log("IssueBoard!!");
+    chrome.tabs.executeScript({
+      file: "dist/contentScript.bundle.js"
+    });
+  }
 });
