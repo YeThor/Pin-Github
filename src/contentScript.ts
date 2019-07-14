@@ -27,29 +27,30 @@ import { fromEvent } from "rxjs";
   newIssueBtn.parentNode!.insertBefore(customIssueBtn, newIssueBtn.nextSibling);
 
   fromEvent(customIssueBtn, "click").subscribe(() => {
-    console.log("click");
-
-    getToken().then(
-      (token: string): void => {
-        fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
-          method: "POST",
-          headers: new Headers({
-            Authorization: `token ${token}`,
-            "Content-Type": "application/vnd.github.symmetra-preview+json"
-          }),
-          body: JSON.stringify({
-            title: "Test Title",
-            body: "Test Body"
-          })
-        }).then(res => {
-          res.json().then(res => {
-            window.location.href = res.html_url;
-          });
-        });
-      }
-    );
+    getToken()
+      .then((token: string): Promise<Response> => createIssue(token))
+      .then((res: Response): Promise<any> => res.json())
+      .then(
+        (res: any): void => {
+          window.location.href = res.html_url;
+        }
+      );
   });
 })();
+
+function createIssue(token: string): Promise<Response> {
+  return fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
+    method: "POST",
+    headers: new Headers({
+      Authorization: `token ${token}`,
+      "Content-Type": "application/vnd.github.symmetra-preview+json"
+    }),
+    body: JSON.stringify({
+      title: "Test Title",
+      body: "Test Body"
+    })
+  });
+}
 
 function getNewIssueBtn(): HTMLElement | null {
   return document.querySelector(
