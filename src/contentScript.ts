@@ -52,7 +52,7 @@ function createIssue(token: string): Promise<Response> {
   });
 }
 
-function getNewIssueBtn(): HTMLElement | null {
+export function getNewIssueBtn(): HTMLAnchorElement | null {
   return document.querySelector(
     'a[href="/YeThor/Pin-Github/issues/new"][role="button"]'
   );
