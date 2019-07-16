@@ -47,7 +47,10 @@ function createIssue(token: string): Promise<Response> {
     }),
     body: JSON.stringify({
       title: "Test Title",
-      body: "Test Body"
+      body: "Test Body",
+      labels: ["bug", "something", "documentation", "new"],
+      assignees: ["YeThor"],
+      milestone: 1
     })
   });
 }
