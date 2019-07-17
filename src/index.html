@@ -5,17 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./index.css" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/node_modules/materialize-css/dist/css/materialize.min.css"
+      media="screen,projection"
+    />
   </head>
-  <body>
-    <div class="container">
-      <div class="option-box">
-        <span class="option-title">Personal Access Token: </span>
-        <input id="token-input" class="option-input" />
-        <button id="token-btn" class="save-btn">
-          Save
-        </button>
+  <body style="width:300px; height:400px;">
+    <div class="row">
+      <div class="row">
+        <div id="token" class="input-field col s11">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="token-input" type="text" class="validate" />
+          <label for="token-input">Personal Access Token</label>
+        </div>
       </div>
     </div>
     <script src="../dist/index.bundle.js"></script>
+    <script
+      type="text/javascript"
+      src="/node_modules/materialize-css/dist/js/materialize.min.js"
+    ></script>
   </body>
 </html>
