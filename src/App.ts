@@ -10,7 +10,7 @@ export default class App {
   private _tokenLabel!: HTMLLabelElement;
 
   public constructor() {
-    this._initTabs();
+    this._initMaterializeCSS();
 
     this._assignDOM();
     this._attachEvents();
@@ -22,8 +22,9 @@ export default class App {
     );
   }
 
-  private _initTabs(): void {
+  private _initMaterializeCSS(): void {
     M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
+    M.Chips.init(document.querySelectorAll(".chips"));
   }
 
   private _attachEvents(): void {
