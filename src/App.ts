@@ -1,5 +1,7 @@
 import { fromEvent, Observable } from "rxjs";
 import { filter } from "rxjs/operators";
+import M from "materialize-css";
+
 import getToken from "./util/getToken";
 
 export default class App {
@@ -8,6 +10,8 @@ export default class App {
   private _tokenLabel!: HTMLLabelElement;
 
   public constructor() {
+    this._initTabs();
+
     this._assignDOM();
     this._attachEvents();
 
@@ -16,6 +20,10 @@ export default class App {
         this._displayToken(token);
       }
     );
+  }
+
+  private _initTabs(): void {
+    M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
   }
 
   private _attachEvents(): void {
