@@ -25,6 +25,32 @@ export default class App {
   private _initMaterializeCSS(): void {
     M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
     M.Chips.init(document.querySelectorAll(".chips"));
+
+    fromEvent(
+      document.querySelector("#assignees") as HTMLElement,
+      "click"
+    ).subscribe(() => {
+      this._useLabelWithChips(document.querySelector(
+        "#assignees"
+      ) as HTMLElement);
+    });
+
+    fromEvent(
+      document.querySelector("#labels") as HTMLElement,
+      "click"
+    ).subscribe(() => {
+      this._useLabelWithChips(document.querySelector("#labels") as HTMLElement);
+    });
+  }
+
+  private _useLabelWithChips(elem: HTMLElement): void {
+    if (
+      elem.querySelector("input")!.value.length > 0 ||
+      elem.classList.contains("focus") ||
+      elem.querySelector("input")!.autofocus
+    ) {
+      elem.querySelector("label")!.classList.add("active");
+    }
   }
 
   private _attachEvents(): void {

@@ -50,13 +50,11 @@
               <input id="title-inputs" type="text" />
               <label for="title-inputs">Issue Title</label>
             </div>
-            <div id="assignees" class="input-field col s11">
-              <input id="assignees-inputs" type="text" />
-              <label for="assignees-inputs">Assignees</label>
+            <div id="assignees" class="chips col s11">
+              <label>Assignees</label>
             </div>
-            <div id="labels" class="input-field col s11">
-              <input id="labels-inputs" type="text" />
-              <label for="labels-inputs">Labels</label>
+            <div id="labels" class="chips col s11">
+              <label>Labels</label>
             </div>
             <div id="milestone" class="input-field col s11">
               <input id="milestone-inputs" type="number" />
@@ -71,14 +69,16 @@
             </div>
           </form>
         </div>
-        <div id="test2" class="col s5">2</div>
+        <div id="test2" class="col s12">
+          <div class="test"><label>Label</label></div>
+        </div>
         <div id="test3" class="col s5">3</div>
       </div>
     </div>
     <script src="../dist/index.bundle.js"></script>
     <script
       type="text/javascript"
-      src="/node_modules/materialize-css/dist/js/materialize.min.js"
+      src="/node_modules/materialize-css/dist/js/materialize.js"
     ></script>
   </body>
 </html>
