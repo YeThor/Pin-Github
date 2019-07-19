@@ -1,3 +1,7 @@
 .no-margin-bottom {
   margin-bottom: 0px;
 }
+
+.chips {
+  margin-top: 10px;
+}
