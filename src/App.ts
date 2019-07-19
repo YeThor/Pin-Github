@@ -26,20 +26,22 @@ export default class App {
     M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
     M.Chips.init(document.querySelectorAll(".chips"));
 
-    fromEvent(
-      document.querySelector("#assignees") as HTMLElement,
-      "click"
-    ).subscribe(() => {
-      this._useLabelWithChips(document.querySelector(
-        "#assignees"
-      ) as HTMLElement);
+    this._makeCustomInput(document.querySelector("#assignees") as HTMLElement);
+    this._makeCustomInput(document.querySelector("#labels") as HTMLElement);
+  }
+
+  private _makeCustomInput(fieldElement: HTMLElement): void {
+    fromEvent(fieldElement, "click").subscribe(() => {
+      this._useLabelWithChips(fieldElement);
+      fieldElement.querySelector("input")!.style.display = "inline-block";
+      fieldElement.querySelector("input")!.focus();
     });
 
     fromEvent(
-      document.querySelector("#labels") as HTMLElement,
-      "click"
+      fieldElement.querySelector("input") as HTMLInputElement,
+      "blur"
     ).subscribe(() => {
-      this._useLabelWithChips(document.querySelector("#labels") as HTMLElement);
+      fieldElement.querySelector("input")!.style.display = "none";
     });
   }
 
