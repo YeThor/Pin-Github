@@ -77,19 +77,19 @@ export default class App {
       document.querySelectorAll(".contents input").forEach(
         (el: Element): void => {
           const key = (el.parentElement as HTMLElement).getAttribute("id");
-          const value = (el as HTMLInputElement).value;
+          const value = (el as HTMLInputElement).value.trim();
 
-          // FIXME: chip 데이터에 대한 값 분기 필요
-
-          if (!value || value === "") {
-            return;
+          if (!key) {
+            throw Error("No id");
           }
 
-          chrome.storage.sync.set({ key: value });
-          console.log(key, value);
+          ["assignees", "labels"].includes(key)
+            ? this._saveChipsOnStorage(key)
+            : chrome.storage.sync.set({ key: value });
         }
       );
     });
+
     fromEvent(this._tokenInput, "blur").subscribe(() => {
       this._tokenInput.type = "password";
       this._tokenInput.disabled = true;
@@ -103,6 +103,14 @@ export default class App {
         this._tokenInput.disabled = false;
         this._tokenInput.focus();
       });
+  }
+
+  private _saveChipsOnStorage(key: string): void {
+    const chipsData = M.Chips.getInstance(document.querySelector(
+      `.chips#${key}`
+    ) as HTMLElement).chipsData.map((item: M.ChipData): string => item.tag);
+
+    chrome.storage.sync.set({ key: chipsData });
   }
 
   private _assignDOM(): void {
