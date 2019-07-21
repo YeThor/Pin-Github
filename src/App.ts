@@ -8,6 +8,7 @@ export default class App {
   private _tokenField!: HTMLDivElement;
   private _tokenInput!: HTMLInputElement;
   private _tokenLabel!: HTMLLabelElement;
+  private _saveBtn!: HTMLButtonElement;
 
   public constructor() {
     this._initMaterializeCSS();
@@ -72,6 +73,23 @@ export default class App {
   }
 
   private _attachEvents(): void {
+    fromEvent(this._saveBtn, "click").subscribe(() => {
+      document.querySelectorAll(".contents input").forEach(
+        (el: Element): void => {
+          const key = (el.parentElement as HTMLElement).getAttribute("id");
+          const value = (el as HTMLInputElement).value;
+
+          // FIXME: chip 데이터에 대한 값 분기 필요
+
+          if (!value || value === "") {
+            return;
+          }
+
+          chrome.storage.sync.set({ key: value });
+          console.log(key, value);
+        }
+      );
+    });
     fromEvent(this._tokenInput, "blur").subscribe(() => {
       this._tokenInput.type = "password";
       this._tokenInput.disabled = true;
@@ -88,6 +106,7 @@ export default class App {
   }
 
   private _assignDOM(): void {
+    this._saveBtn = document.querySelector("#save-btn") as HTMLButtonElement;
     this._tokenField = document.querySelector("#token") as HTMLDivElement;
 
     this._tokenInput = document.querySelector(
