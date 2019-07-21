@@ -24,7 +24,17 @@ export default class App {
 
   private _initMaterializeCSS(): void {
     M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
-    M.Chips.init(document.querySelectorAll(".chips"));
+    M.Chips.init(document.querySelectorAll(".chips"), {
+      onChipDelete: (element: any): void => {
+        const chips = element[0] as Element;
+
+        console.log(chips.childElementCount);
+        if (chips.childElementCount === 2) {
+          chips.querySelector("label")!.classList.remove("active");
+          chips.querySelector("input")!.style.display = "inline-block";
+        }
+      }
+    });
 
     this._makeCustomInput(document.querySelector("#assignees") as HTMLElement);
     this._makeCustomInput(document.querySelector("#labels") as HTMLElement);
@@ -36,23 +46,18 @@ export default class App {
     const hasChips = (): boolean =>
       !(input.previousElementSibling instanceof HTMLLabelElement);
 
-    fromEvent(fieldElement, "click").subscribe(() => {
-      console.log("click");
-      this._useLabelWithChips(fieldElement);
-      input.style.display = "inline-block";
-      input.focus();
-    });
+    fromEvent(fieldElement, "click")
+      .pipe(filter((e: Event) => (e.target as HTMLElement).tagName !== "I"))
+      .subscribe(() => {
+        this._useLabelWithChips(fieldElement);
+        input.style.display = "inline-block";
+        input.focus();
+      });
 
     fromEvent(input, "blur")
       .pipe(filter(hasChips))
       .subscribe(() => {
         input.style.display = "none";
-      });
-
-    fromEvent(input, "blur")
-      .pipe(filter(() => !hasChips()))
-      .subscribe(() => {
-        label.classList.remove("active");
       });
   }
 
