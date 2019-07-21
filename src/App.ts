@@ -31,17 +31,29 @@ export default class App {
   }
 
   private _makeCustomInput(fieldElement: HTMLElement): void {
+    const label = fieldElement.querySelector("label") as HTMLLabelElement;
     const input = fieldElement.querySelector("input") as HTMLInputElement;
+    const hasChips = (): boolean =>
+      !(input.previousElementSibling instanceof HTMLLabelElement);
 
     fromEvent(fieldElement, "click").subscribe(() => {
+      console.log("click");
       this._useLabelWithChips(fieldElement);
       input.style.display = "inline-block";
       input.focus();
     });
 
-    fromEvent(input, "blur").subscribe(() => {
-      input.style.display = "none";
-    });
+    fromEvent(input, "blur")
+      .pipe(filter(hasChips))
+      .subscribe(() => {
+        input.style.display = "none";
+      });
+
+    fromEvent(input, "blur")
+      .pipe(filter(() => !hasChips()))
+      .subscribe(() => {
+        label.classList.remove("active");
+      });
   }
 
   private _useLabelWithChips(elem: HTMLElement): void {
