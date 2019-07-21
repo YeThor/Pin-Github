@@ -85,7 +85,7 @@ export default class App {
 
           ["assignees", "labels"].includes(key)
             ? this._saveChipsOnStorage(key)
-            : chrome.storage.sync.set({ key: value });
+            : chrome.storage.sync.set({ [key]: value });
         }
       );
     });
@@ -110,7 +110,8 @@ export default class App {
       `.chips#${key}`
     ) as HTMLElement).chipsData.map((item: M.ChipData): string => item.tag);
 
-    chrome.storage.sync.set({ key: chipsData });
+    chrome.storage.sync.set({ [key]: chipsData });
+    console.log("save -", key, chipsData);
   }
 
   private _assignDOM(): void {
