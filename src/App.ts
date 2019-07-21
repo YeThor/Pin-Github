@@ -31,17 +31,16 @@ export default class App {
   }
 
   private _makeCustomInput(fieldElement: HTMLElement): void {
+    const input = fieldElement.querySelector("input") as HTMLInputElement;
+
     fromEvent(fieldElement, "click").subscribe(() => {
       this._useLabelWithChips(fieldElement);
-      fieldElement.querySelector("input")!.style.display = "inline-block";
-      fieldElement.querySelector("input")!.focus();
+      input.style.display = "inline-block";
+      input.focus();
     });
 
-    fromEvent(
-      fieldElement.querySelector("input") as HTMLInputElement,
-      "blur"
-    ).subscribe(() => {
-      fieldElement.querySelector("input")!.style.display = "none";
+    fromEvent(input, "blur").subscribe(() => {
+      input.style.display = "none";
     });
   }
 
