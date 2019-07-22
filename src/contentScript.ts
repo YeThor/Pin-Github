@@ -1,5 +1,6 @@
 import getToken from "./util/getToken";
 import { fromEvent } from "rxjs";
+import getDataFromStorage, { state } from "./util/getDataFromStorage";
 
 (function() {
   const newIssueBtn = getNewIssueBtn();
@@ -27,8 +28,8 @@ import { fromEvent } from "rxjs";
   newIssueBtn.parentNode!.insertBefore(customIssueBtn, newIssueBtn.nextSibling);
 
   fromEvent(customIssueBtn, "click").subscribe(() => {
-    getToken()
-      .then((token: string): Promise<Response> => createIssue(token))
+    getDataFromStorage()
+      .then((res: state): Promise<Response> => createIssue(res))
       .then((res: Response): Promise<any> => res.json())
       .then(
         (res: any): void => {
@@ -38,7 +39,13 @@ import { fromEvent } from "rxjs";
   });
 })();
 
-function createIssue(token: string): Promise<Response> {
+function createIssue({
+  token,
+  title,
+  assignees,
+  labels,
+  milestone
+}: state): Promise<Response> {
   return fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
     method: "POST",
     headers: new Headers({
@@ -46,11 +53,10 @@ function createIssue(token: string): Promise<Response> {
       "Content-Type": "application/vnd.github.symmetra-preview+json"
     }),
     body: JSON.stringify({
-      title: "Test Title",
-      body: "Test Body",
-      labels: ["feature", "test"],
-      assignees: ["YeThor"],
-      milestone: 1
+      title,
+      labels,
+      assignees,
+      milestone
     })
   });
 }
