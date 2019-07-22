@@ -1,6 +1,7 @@
 import getToken from "./util/getToken";
 import { fromEvent } from "rxjs";
 import getDataFromStorage, { state } from "./util/getDataFromStorage";
+import getNewIssueBtn from "./util/getNewIssueBtn";
 
 (function() {
   const newIssueBtn = getNewIssueBtn();
@@ -59,10 +60,4 @@ function createIssue({
       milestone
     })
   });
-}
-
-export function getNewIssueBtn(): HTMLAnchorElement | null {
-  return document.querySelector(
-    'a[href="/YeThor/Pin-Github/issues/new"][role="button"]'
-  );
 }
