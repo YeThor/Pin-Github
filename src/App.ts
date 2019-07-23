@@ -76,16 +76,7 @@ export default class App {
     fromEvent(this._saveBtn, "click").subscribe(() => {
       document.querySelectorAll(".contents input").forEach(
         (el: Element): void => {
-          const key = (el.parentElement as HTMLElement).getAttribute("id");
-          const value = (el as HTMLInputElement).value.trim();
-
-          if (!key) {
-            throw Error("No id");
-          }
-
-          ["assignees", "labels"].includes(key)
-            ? this._saveChipsOnStorage(key)
-            : chrome.storage.sync.set({ [key]: value });
+          this._storeTemplate(el);
         }
       );
     });
@@ -148,5 +139,18 @@ export default class App {
     }
 
     chrome.storage.sync.set({ token });
+  }
+
+  private _storeTemplate(el: Element): void {
+    const key = (el.parentElement as HTMLElement).getAttribute("id");
+    const value = (el as HTMLInputElement).value.trim();
+
+    if (!key) {
+      throw Error("No id");
+    }
+
+    ["assignees", "labels"].includes(key)
+      ? this._saveChipsOnStorage(key)
+      : chrome.storage.sync.set({ [key]: value });
   }
 }
