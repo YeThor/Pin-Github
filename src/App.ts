@@ -3,6 +3,7 @@ import { filter } from "rxjs/operators";
 import M from "materialize-css";
 
 import getToken from "./util/getToken";
+import getDataFromStorage, { state } from "./util/getDataFromStorage";
 
 export default class App {
   private _tokenField!: HTMLDivElement;
@@ -19,6 +20,12 @@ export default class App {
     getToken().then(
       (token: string): void => {
         this._displayToken(token);
+      }
+    );
+
+    getDataFromStorage().then(
+      (res: state): void => {
+        this._displayTemplate(res);
       }
     );
   }
@@ -116,6 +123,18 @@ export default class App {
     this._tokenLabel = document.querySelector(
       'label[for="token-input"]'
     ) as HTMLLabelElement;
+  }
+
+  private _displayTemplate(state: state): void {
+    for (let key in state) {
+      const input = document.querySelector(`#${key} input`) as HTMLInputElement;
+
+      // TODO: chip 데이터 만들기
+      if (state[key] instanceof Array) continue;
+
+      input.value = state[key] as string;
+      console.log(input, state[key]);
+    }
   }
 
   private _displayToken(token: string): void {
