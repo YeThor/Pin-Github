@@ -1,4 +1,5 @@
 export interface state {
+  [key: string]: string | string[];
   token: string;
   title: string;
   assignees: string[];
