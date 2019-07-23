@@ -1,4 +1,4 @@
-import { getNewIssueBtn } from "./contentScript";
+import getNewIssueBtn from "./util/getNewIssueBtn";
 
 describe("getNewIssueBtn()", () => {
   afterEach(() => {
