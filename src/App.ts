@@ -131,11 +131,20 @@ export default class App {
       const label = document.querySelector(`#${key} label`) as HTMLLabelElement;
 
       // TODO: chip 데이터 만들기
-      if (state[key] instanceof Array) continue;
+      if (state[key] instanceof Array) {
+        const instance = M.Chips.getInstance(document.querySelector(
+          `.chips#${key}`
+        ) as HTMLElement);
 
-      input.value = state[key] as string;
-      label.classList.add("active");
-      console.log(input, state[key]);
+        Array.from(state[key]).forEach(item => {
+          instance.addChip({
+            tag: state[key] as string
+          });
+        });
+      } else {
+        input.value = state[key] as string;
+        label.classList.add("active");
+      }
     }
   }
 
