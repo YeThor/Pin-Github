@@ -143,8 +143,8 @@ export default class App {
         });
       } else {
         input.value = state[key] as string;
-        label.classList.add("active");
       }
+      label.classList.add("active");
     }
   }
 
