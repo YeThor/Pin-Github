@@ -128,11 +128,13 @@ export default class App {
   private _displayTemplate(state: state): void {
     for (let key in state) {
       const input = document.querySelector(`#${key} input`) as HTMLInputElement;
+      const label = document.querySelector(`#${key} label`) as HTMLLabelElement;
 
       // TODO: chip 데이터 만들기
       if (state[key] instanceof Array) continue;
 
       input.value = state[key] as string;
+      label.classList.add("active");
       console.log(input, state[key]);
     }
   }
