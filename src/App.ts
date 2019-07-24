@@ -138,7 +138,7 @@ export default class App {
 
         Array.from(state[key]).forEach(item => {
           instance.addChip({
-            tag: state[key] as string
+            tag: item
           });
         });
       } else {
