@@ -141,6 +141,7 @@ export default class App {
             tag: item
           });
         });
+        input.style.display = "none";
       } else {
         input.value = state[key] as string;
       }
