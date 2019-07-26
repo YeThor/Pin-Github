@@ -1,11 +1,4 @@
-export interface state {
-  [key: string]: string | string[];
-  token: string;
-  title: string;
-  assignees: string[];
-  labels: string[];
-  milestone: string;
-}
+import state from "../type/state";
 
 export default function getDataFromStorage(): Promise<state> {
   return new Promise((resolve, reject) => {
