@@ -1,7 +1,7 @@
-import getToken from "./util/getToken";
 import { fromEvent } from "rxjs";
-import getDataFromStorage, { state } from "./util/getDataFromStorage";
+import getDataFromStorage from "./util/getDataFromStorage";
 import getNewIssueBtn from "./util/getNewIssueBtn";
+import state from "./type/state";
 
 (function() {
   const newIssueBtn = getNewIssueBtn();
