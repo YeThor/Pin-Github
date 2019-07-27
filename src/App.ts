@@ -3,7 +3,8 @@ import { filter } from "rxjs/operators";
 import M from "materialize-css";
 
 import getToken from "./util/getToken";
-import getDataFromStorage, { state } from "./util/getDataFromStorage";
+import getDataFromStorage from "./util/getDataFromStorage";
+import state from "./type/state";
 
 export default class App {
   private _tokenField!: HTMLDivElement;
@@ -138,7 +139,7 @@ export default class App {
 
         Array.from(state[key]).forEach(item => {
           instance.addChip({
-            tag: item
+            tag: item as string
           });
         });
         input.style.display = "none";
