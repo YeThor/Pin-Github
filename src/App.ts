@@ -33,51 +33,6 @@ export default class App {
 
   private _initMaterializeCSS(): void {
     M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
-    M.Chips.init(document.querySelectorAll(".chips"), {
-      onChipDelete: (element: any): void => {
-        const chips = element[0] as Element;
-
-        console.log(chips.childElementCount);
-        if (chips.childElementCount === 2) {
-          chips.querySelector("label")!.classList.remove("active");
-          chips.querySelector("input")!.style.display = "inline-block";
-        }
-      }
-    });
-
-    this._makeCustomInput(document.querySelector("#assignees") as HTMLElement);
-    this._makeCustomInput(document.querySelector("#labels") as HTMLElement);
-  }
-
-  private _makeCustomInput(fieldElement: HTMLElement): void {
-    const label = fieldElement.querySelector("label") as HTMLLabelElement;
-    const input = fieldElement.querySelector("input") as HTMLInputElement;
-    const hasChips = (): boolean =>
-      !(input.previousElementSibling instanceof HTMLLabelElement);
-
-    fromEvent(fieldElement, "click")
-      .pipe(filter((e: Event) => (e.target as HTMLElement).tagName !== "I"))
-      .subscribe(() => {
-        this._useLabelWithChips(fieldElement);
-        input.style.display = "inline-block";
-        input.focus();
-      });
-
-    fromEvent(input, "blur")
-      .pipe(filter(hasChips))
-      .subscribe(() => {
-        input.style.display = "none";
-      });
-  }
-
-  private _useLabelWithChips(elem: HTMLElement): void {
-    if (
-      elem.querySelector("input")!.value.length > 0 ||
-      elem.classList.contains("focus") ||
-      elem.querySelector("input")!.autofocus
-    ) {
-      elem.querySelector("label")!.classList.add("active");
-    }
   }
 
   private _attachEvents(): void {
@@ -104,15 +59,6 @@ export default class App {
       });
   }
 
-  private _saveChipsOnStorage(key: string): void {
-    const chipsData = M.Chips.getInstance(document.querySelector(
-      `.chips#${key}`
-    ) as HTMLElement).chipsData.map((item: M.ChipData): string => item.tag);
-
-    chrome.storage.sync.set({ [key]: chipsData });
-    console.log("save -", key, chipsData);
-  }
-
   private _assignDOM(): void {
     this._saveBtn = document.querySelector("#save-btn") as HTMLButtonElement;
     this._tokenField = document.querySelector("#token") as HTMLDivElement;
@@ -133,16 +79,16 @@ export default class App {
 
       // TODO: chip 데이터 만들기
       if (state[key] instanceof Array) {
-        const instance = M.Chips.getInstance(document.querySelector(
-          `.chips#${key}`
-        ) as HTMLElement);
+        let innerHTML = "";
 
-        Array.from(state[key]).forEach(item => {
-          instance.addChip({
-            tag: item as string
-          });
+        Array.from(state[key]).forEach((item, index) => {
+          if (index === state[key].length - 1) {
+            innerHTML += `${item}`;
+          } else {
+            innerHTML += `${item},`;
+          }
         });
-        input.style.display = "none";
+        input.value = innerHTML;
       } else {
         input.value = state[key] as string;
       }
@@ -181,8 +127,10 @@ export default class App {
       throw Error("No id");
     }
 
-    ["assignees", "labels"].includes(key)
-      ? this._saveChipsOnStorage(key)
-      : chrome.storage.sync.set({ [key]: value });
+    // TODO: string[] 저장
+    // ["assignees", "labels"].includes(key)
+    //   ? this._saveChipsOnStorage(key)
+    //   : chrome.storage.sync.set({ [key]: value });
+    chrome.storage.sync.set({ [key]: value });
   }
 }
