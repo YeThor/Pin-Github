@@ -74,6 +74,8 @@ export default class App {
 
   private _displayTemplate(state: state): void {
     for (let key in state) {
+      if (state[key].length === 0) continue;
+
       const input = document.querySelector(`#${key} input`) as HTMLInputElement;
       const label = document.querySelector(`#${key} label`) as HTMLLabelElement;
 
@@ -121,16 +123,16 @@ export default class App {
 
   private _storeTemplate(el: Element): void {
     const key = (el.parentElement as HTMLElement).getAttribute("id");
-    const value = (el as HTMLInputElement).value.trim();
+    const value = (el as HTMLInputElement).value;
 
     if (!key) {
       throw Error("No id");
     }
 
-    // TODO: string[] 저장
-    // ["assignees", "labels"].includes(key)
-    //   ? this._saveChipsOnStorage(key)
-    //   : chrome.storage.sync.set({ [key]: value });
-    chrome.storage.sync.set({ [key]: value });
+    if (["assignees", "labels"].includes(key)) {
+      chrome.storage.sync.set({ [key]: value.split(",") });
+    } else {
+      chrome.storage.sync.set({ [key]: value.trim() });
+    }
   }
 }
