@@ -8,7 +8,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://github.com/*/issues", "https://github.com/*/pull*"],
+      "matches": ["https://github.com/*/issues", "https://github.com/*/pull/*"],
       "js": ["dist/contentScript.bundle.js"]
     }
   ],
@@ -21,6 +21,6 @@
     "webNavigation",
     "tabs",
     "https://github.com/*/issues",
-    "https://github.com/*/pull*"
+    "https://github.com/*/pull/*"
   ]
 }
