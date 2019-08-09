@@ -11,6 +11,7 @@ export default class App {
   private _tokenInput!: HTMLInputElement;
   private _tokenLabel!: HTMLLabelElement;
   private _saveBtn!: HTMLButtonElement;
+  private _savePRBtn!: HTMLButtonElement;
 
   public constructor() {
     this._initMaterializeCSS();
@@ -37,7 +38,15 @@ export default class App {
 
   private _attachEvents(): void {
     fromEvent(this._saveBtn, "click").subscribe(() => {
-      document.querySelectorAll(".contents input").forEach(
+      document.querySelectorAll("#test1 input").forEach(
+        (el: Element): void => {
+          this._storeTemplate(el);
+        }
+      );
+    });
+
+    fromEvent(this._savePRBtn, "click").subscribe(() => {
+      document.querySelectorAll("#test2 input").forEach(
         (el: Element): void => {
           this._storeTemplate(el);
         }
@@ -61,6 +70,9 @@ export default class App {
 
   private _assignDOM(): void {
     this._saveBtn = document.querySelector("#save-btn") as HTMLButtonElement;
+    this._savePRBtn = document.querySelector(
+      "#save-btn-pr"
+    ) as HTMLButtonElement;
     this._tokenField = document.querySelector("#token") as HTMLDivElement;
 
     this._tokenInput = document.querySelector(
@@ -129,7 +141,7 @@ export default class App {
       throw Error("No id");
     }
 
-    if (["assignees", "labels"].includes(key)) {
+    if (["assignees", "labels", "prassignees", "prlabels"].includes(key)) {
       chrome.storage.sync.set({ [key]: value.split(",") });
     } else {
       chrome.storage.sync.set({ [key]: value.trim() });
