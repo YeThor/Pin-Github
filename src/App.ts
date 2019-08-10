@@ -142,7 +142,8 @@ export default class App {
     }
 
     if (["assignees", "labels", "prassignees", "prlabels"].includes(key)) {
-      chrome.storage.sync.set({ [key]: value.split(",") });
+      const values = value.split(",").map(item => item.trim());
+      chrome.storage.sync.set({ [key]: values });
     } else {
       chrome.storage.sync.set({ [key]: value.trim() });
     }
