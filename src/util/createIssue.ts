@@ -20,7 +20,7 @@ export default function createIssue(res: state): Promise<Response> {
     reqParam.assignees = assignees;
   }
 
-  return fetch("https://api.github.com/repos/YeThor/Pin-Github/issues", {
+  return fetch(`https://api.github.com/repos${window.location.pathname}`, {
     method: "POST",
     headers: new Headers({
       Authorization: `token ${token}`,
