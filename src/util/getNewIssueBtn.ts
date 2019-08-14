@@ -1,5 +1,5 @@
 export default function getNewIssueBtn(): HTMLAnchorElement | null {
   return document.querySelector(
-    'a[href="/YeThor/Pin-Github/issues/new"][role="button"]'
+    `a[href="${window.location.pathname}/new"][role="button"]`
   );
 }

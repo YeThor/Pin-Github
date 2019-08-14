@@ -19,7 +19,10 @@ export default function editPR(res: state): Promise<Response> {
   }
 
   return fetch(
-    `https://api.github.com/repos/YeThor/Pin-Github/issues/${PRNumber}`,
+    `https://api.github.com/repos${window.location.pathname}`.replace(
+      "/pull/",
+      "/issues/"
+    ),
     {
       method: "PATCH",
       headers: new Headers({

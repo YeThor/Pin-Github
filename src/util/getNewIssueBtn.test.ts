@@ -10,29 +10,22 @@ describe("getNewIssueBtn()", () => {
     document.body.innerHTML = `
       <div>
         <a 
-          href="/YeThor/Pin-Github/issues/new" 
+          href="${window.location.pathname}/new" 
           class="btn btn-primary float-right" 
           role="button" data-hotkey="c" data-skip-pjax="">
          New issue
         </a>
       </div>`;
 
-    // when
-    const result = getNewIssueBtn();
-
-    console.log(result);
-    // then
-    expect(result).toBeInstanceOf(HTMLAnchorElement);
+    // when, then
+    expect(getNewIssueBtn()).toBeInstanceOf(HTMLAnchorElement);
   });
 
   it("returns null if there's no target element", () => {
     // given
     document.body.innerHTML = `<div><a></a></div>`;
 
-    // when
-    const result = getNewIssueBtn();
-
-    // then
-    expect(result).toBeNull();
+    // when, then
+    expect(getNewIssueBtn()).toBeNull();
   });
 });
