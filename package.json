@@ -2,7 +2,6 @@
   "name": "pin-github",
   "version": "1.0.0",
   "description": "A Chrome extension which pins the additional options when creating PR or Issue",
-  "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
     "test": "jest --env=jsdom",
