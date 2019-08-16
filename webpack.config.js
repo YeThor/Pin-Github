@@ -5,7 +5,7 @@ module.exports = {
   devtool: "inline-source-map",
   watch: true,
   entry: {
-    index: "./src/index.ts",
+    popup: "./src/popup.ts",
     contentScript: "./src/contentScript.ts",
     backgroundScript: "./src/backgroundScript.ts"
   },
