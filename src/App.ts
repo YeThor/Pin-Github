@@ -34,6 +34,7 @@ export default class App {
 
   private _initMaterializeCSS(): void {
     M.Tabs.init(document.querySelector(".tabs") as HTMLElement);
+    M.Modal.init(document.querySelectorAll(".modal"));
   }
 
   private _attachEvents(): void {
