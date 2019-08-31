@@ -8,7 +8,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://github.com/*/issues", "https://github.com/*/pull/*"],
+      "matches": ["<all_urls>"],
       "js": ["dist/contentScript.bundle.js"]
     }
   ],
@@ -16,11 +16,5 @@
     "scripts": ["dist/backgroundScript.bundle.js"],
     "persistent": false
   },
-  "permissions": [
-    "storage",
-    "webNavigation",
-    "tabs",
-    "https://github.com/*/issues",
-    "https://github.com/*/pull/*"
-  ]
+  "permissions": ["storage", "webNavigation", "tabs"]
 }
