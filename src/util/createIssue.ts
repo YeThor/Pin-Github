@@ -12,14 +12,13 @@ export default function createIssue(res: state): Promise<Response> {
     reqParam.milestone = milestone;
   }
 
-  // FIXME: [""] 로 저장되는 케이스가 있음
-  // if (labels && labels.length > 0) {
-  //   reqParam.labels = labels;
-  // }
+  if (labels && labels.length > 0) {
+    reqParam.labels = labels;
+  }
 
-  // if (assignees && assignees.length > 0) {
-  //   reqParam.assignees = assignees;
-  // }
+  if (assignees && assignees.length > 0) {
+    reqParam.assignees = assignees;
+  }
 
   return fetch(`https://${getApiUrl()}/repos${window.location.pathname}`, {
     method: "POST",
