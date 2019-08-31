@@ -1,4 +1,5 @@
 import state from "../type/state";
+import getApiUrl from "./getApiUrl";
 
 export default function createIssue(res: state): Promise<Response> {
   const reqParam: Partial<state> = {};
@@ -28,12 +29,4 @@ export default function createIssue(res: state): Promise<Response> {
     }),
     body: JSON.stringify(reqParam)
   });
-}
-
-function getApiUrl(): string {
-  if (window.location.host === "github.com") {
-    return "api.github.com";
-  } else {
-    return `${window.location.host}/api/v3`;
-  }
 }
