@@ -1,4 +1,5 @@
 import state from "../type/state";
+import getApiUrl from "./getApiUrl";
 
 export default function editPR(res: state): Promise<Response> {
   const PRNumber = window.location.pathname.replace(/^\D+/, "");
@@ -19,7 +20,7 @@ export default function editPR(res: state): Promise<Response> {
   }
 
   return fetch(
-    `https://api.github.com/repos${window.location.pathname}`.replace(
+    `https://${getApiUrl()}/repos${window.location.pathname}`.replace(
       "/pull/",
       "/issues/"
     ),
