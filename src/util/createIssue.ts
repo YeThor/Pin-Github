@@ -12,15 +12,16 @@ export default function createIssue(res: state): Promise<Response> {
     reqParam.milestone = milestone;
   }
 
-  if (labels && labels.length > 0) {
-    reqParam.labels = labels;
-  }
+  // FIXME: [""] 로 저장되는 케이스가 있음
+  // if (labels && labels.length > 0) {
+  //   reqParam.labels = labels;
+  // }
 
-  if (assignees && assignees.length > 0) {
-    reqParam.assignees = assignees;
-  }
+  // if (assignees && assignees.length > 0) {
+  //   reqParam.assignees = assignees;
+  // }
 
-  return fetch(`https://api.github.com/repos${window.location.pathname}`, {
+  return fetch(`https://${getApiUrl()}/repos${window.location.pathname}`, {
     method: "POST",
     headers: new Headers({
       Authorization: `token ${token}`,
@@ -28,4 +29,12 @@ export default function createIssue(res: state): Promise<Response> {
     }),
     body: JSON.stringify(reqParam)
   });
+}
+
+function getApiUrl(): string {
+  if (window.location.host === "github.com") {
+    return "api.github.com";
+  } else {
+    return `${window.location.host}/api/v3`;
+  }
 }
