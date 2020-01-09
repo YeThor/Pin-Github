@@ -9,10 +9,11 @@ export function addPRCustomBtn(PRBtn: HTMLButtonElement): void {
 
   customPRBtn.innerText = "Apply fields";
 
-  [...PRBtn.classList].forEach(className => {
-    if (className === "js-details-target") {
+  PRBtn.classList.value.split(" ").forEach(className => {
+    if (className === "js-details-target" || className === "") {
       return;
     }
+
     customPRBtn.classList.add(className);
   });
 
