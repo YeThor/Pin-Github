@@ -10,7 +10,7 @@ export default function addIssueCumstomBtn(
 
   customIssueBtn.innerText = "Custom issue";
 
-  [...newIssueBtn.classList].forEach(className => {
+  newIssueBtn.classList.value.split(" ").forEach(className => {
     customIssueBtn.classList.add(className);
   });
 
@@ -22,10 +22,8 @@ export default function addIssueCumstomBtn(
     getDataFromStorage()
       .then((res: state): Promise<Response> => createIssue(res))
       .then((res: Response): Promise<any> => res.json())
-      .then(
-        (res: any): void => {
-          window.location.href = res.html_url;
-        }
-      );
+      .then((res: any): void => {
+        window.location.href = res.html_url;
+      });
   });
 }
