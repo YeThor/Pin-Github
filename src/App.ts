@@ -39,7 +39,7 @@ export default class App {
 
   private _attachEvents(): void {
     fromEvent(this._saveBtn, "click").subscribe(() => {
-      document.querySelectorAll("#test1 input").forEach(
+      document.querySelectorAll("#issue-board input").forEach(
         (el: Element): void => {
           this._storeTemplate(el);
         }
@@ -47,7 +47,7 @@ export default class App {
     });
 
     fromEvent(this._savePRBtn, "click").subscribe(() => {
-      document.querySelectorAll("#test2 input").forEach(
+      document.querySelectorAll("#pr-board input").forEach(
         (el: Element): void => {
           this._storeTemplate(el);
         }
