@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A Chrome extension which pins the additional options when creating PR or Issue",
   "scripts": {
-    "build": "webpack --mode development",
+    "start": "webpack --mode development",
     "test": "jest --env=jsdom",
     "tsc": "./node_modules/typescript/bin/tsc"
   },
