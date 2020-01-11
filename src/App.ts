@@ -19,17 +19,13 @@ export default class App {
     this._assignDOM();
     this._attachEvents();
 
-    getToken().then(
-      (token: string): void => {
-        this._displayToken(token);
-      }
-    );
+    getToken().then((token: string): void => {
+      this._displayToken(token);
+    });
 
-    getDataFromStorage().then(
-      (res: state): void => {
-        this._displayTemplate(res);
-      }
-    );
+    getDataFromStorage().then((res: state): void => {
+      this._displayTemplate(res);
+    });
   }
 
   private _initMaterializeCSS(): void {
@@ -39,19 +35,19 @@ export default class App {
 
   private _attachEvents(): void {
     fromEvent(this._saveBtn, "click").subscribe(() => {
-      document.querySelectorAll("#issue-board input").forEach(
-        (el: Element): void => {
+      document
+        .querySelectorAll("#issue-board input")
+        .forEach((el: Element): void => {
           this._storeTemplate(el);
-        }
-      );
+        });
     });
 
     fromEvent(this._savePRBtn, "click").subscribe(() => {
-      document.querySelectorAll("#pr-board input").forEach(
-        (el: Element): void => {
+      document
+        .querySelectorAll("#pr-board input")
+        .forEach((el: Element): void => {
           this._storeTemplate(el);
-        }
-      );
+        });
     });
 
     fromEvent(this._tokenInput, "blur").subscribe(() => {

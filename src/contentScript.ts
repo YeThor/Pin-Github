@@ -7,7 +7,6 @@ import { addPRCustomBtn } from "./util/addPRCustomBtn";
 import addIssueCumstomBtn from "./util/addIssueCustomBtn";
 
 (function() {
-  console.log("content-script2");
   const issueBtn = getNewIssueBtn();
   const prBtn = getPREditButton();
 

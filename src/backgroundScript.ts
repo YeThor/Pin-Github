@@ -5,7 +5,6 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
   );
 
   if (isIssueBoard || isPREndPage) {
-    console.log("IssueBoard or PREndPage ", details.url);
     chrome.tabs.executeScript({
       file: "dist/contentScript.bundle.js"
     });
