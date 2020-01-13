@@ -1,10 +1,10 @@
 # Pin-Github
 
-This is the chrome extension that save sub fields and add them when you create an issue or modify a PR.
+This is the chrome extension that pins sub fields when you create an issue or modify a PR.
 
-With this chrome extension, you can do:
-- create a new issue with sub fields automatically.
-- apply sub fields with one-click on your PR page
+With this chrome extension, you can do these with one-click button:
+- create a new issue automatically with sub fields you saved.
+- modify a PR by adding sub fields you saved.
 
 <img src="https://user-images.githubusercontent.com/22616716/72204371-69188f00-34ba-11ea-9f15-4df05f6c22c2.png">
 
