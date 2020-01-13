@@ -10,7 +10,10 @@ With this chrome extension, you can do:
 
 ## How to 
 
-0. Install the extension in Chrome Store and click the icon.
+0. Go to [Release Board](https://github.com/YeThor/Pin-Github/releases) and download the `pin-github-for-download.zip`. Drag the zip file to the chrome://extensions. Developer mode on the top right side must be turned on.
+
+<img src="https://user-images.githubusercontent.com/22616716/72259784-a749b600-3654-11ea-8ddf-03fcef30a631.png">
+
 
 1. Get your personal access token and enter it in the extension. **This must be done to use the extension.** If you don't know how to get a personal access token, here is [the guide](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
 
