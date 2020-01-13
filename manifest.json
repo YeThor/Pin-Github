@@ -17,5 +17,6 @@
     "scripts": ["dist/backgroundScript.bundle.js"],
     "persistent": false
   },
-  "permissions": ["storage", "webNavigation", "tabs"]
+  "permissions": ["storage", "webNavigation", "tabs"],
+  "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com; object-src 'self'"
 }
