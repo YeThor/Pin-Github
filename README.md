@@ -27,13 +27,13 @@ With this chrome extension, you can do:
 
 <img src="https://user-images.githubusercontent.com/22616716/72204570-e218e600-34bc-11ea-909c-f43dee9ac76b.png"/>
 
-The issue was created with sub fields I saved :tada:
+The issue was created with sub fields you saved :tada:
 
 3-2. Modify a PR with the sub fields saved before. Go to the PR page and click the `apply fields`. If you put the wrong information in the extension, 404 error page will pop up.
 
 <img src="https://user-images.githubusercontent.com/22616716/72204740-9404e200-34be-11ea-908f-a5b41690f3f0.png"/>
 
-The sub fields are added to the PR :tada:
+Your sub fields are added to the PR :tada:
 
 
 
